@@ -5,13 +5,16 @@ import '@fortawesome/fontawesome-free/css/all.css';
 import App from './App';
 import AuthContextProvider from './contexts/authContext';
 import './index.css';
+import LoadingContextProvider from './contexts/LoadingContext';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
   <BrowserRouter>
-    <AuthContextProvider>
-      <App />
-    </AuthContextProvider>
+    <LoadingContextProvider>
+      <AuthContextProvider>
+        <App />
+      </AuthContextProvider>
+    </LoadingContextProvider>
   </BrowserRouter>
   // </React.StrictMode>
 );
