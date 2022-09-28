@@ -1,6 +1,22 @@
+import { useState } from 'react';
+
 function RegisterForm() {
+  const [input, setInput] = useState({
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: '',
+  });
+
+  const handleClickSubmit = async (e) => {
+    e.preventDefault();
+  };
+
+  const handleChangeInput = (e) => {
+    setInput({ ...input, [e.target.name]: e.target.value });
+  };
   return (
-    <form>
+    <form onSubmit={handleClickSubmit}>
       <div className="w-[25rem] ml-[9rem]">
         <h1 className="text-center text-2xl uppercase font-bold">Register</h1>
         <div className="mb-3">
@@ -15,6 +31,8 @@ function RegisterForm() {
             id="username"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="username"
+            name="username"
+            onChange={handleChangeInput}
           />
         </div>
         <div className="mb-3">
@@ -29,6 +47,8 @@ function RegisterForm() {
             id="email"
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="name@email.com"
+            name="email"
+            onChange={handleChangeInput}
           />
         </div>
         <div className="mb-3">
@@ -41,6 +61,8 @@ function RegisterForm() {
           <input
             type="password"
             id="password"
+            name="password"
+            onChange={handleChangeInput}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
@@ -54,6 +76,8 @@ function RegisterForm() {
           <input
             type="confirmPassword"
             id="confirmPassword"
+            name="confirmPassword"
+            onChange={handleChangeInput}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>

@@ -1,6 +1,20 @@
+import { useState } from 'react';
+
 function LoginForm() {
+  const [input, setInput] = useState({
+    usernameOrEmail: '',
+    password: '',
+  });
+
+  const handleClickSubmit = async (e) => {
+    e.preventDefault();
+  };
+
+  const handleChangeInput = (e) => {
+    setInput({ ...input, [e.target.name]: e.target.value });
+  };
   return (
-    <form>
+    <form onSubmit={handleClickSubmit}>
       <div className="w-[25rem] ml-[9rem]">
         <h1 className="text-center text-2xl uppercase font-bold mb-5">Login</h1>
         <div className="mb-6">
@@ -13,6 +27,8 @@ function LoginForm() {
           <input
             type="username"
             id="username"
+            name="usernameOrEmail"
+            onChange={handleChangeInput}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="username or email"
           />
@@ -28,6 +44,8 @@ function LoginForm() {
           <input
             type="password"
             id="password"
+            name="password"
+            onChange={handleChangeInput}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
