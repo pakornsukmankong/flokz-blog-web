@@ -1,18 +1,18 @@
 import LoginRegisImage from '../../components/ui/LoginRegisImage';
-import regisCoverImg from '../../assets/img/nayeon_main_1.jpeg';
-import RegisterForm from './RegisterForm';
+import loginCoverImg from '../../assets/img/iu.jpeg';
+import LoginForm from './LoginForm';
 
-function RegisterContainer() {
+function LoginContainer() {
   return (
     <div className="grid grid-cols-2 gap-10 items-center m-10 mt-15">
-      <RegisterForm />
+      <LoginForm />
       <LoginRegisImage
         wSize="w-[22rem]"
         hSize="h-[22rem]"
-        src={regisCoverImg}
+        src={loginCoverImg}
       />
     </div>
   );
 }
 
-export default RegisterContainer;
+export default LoginContainer;
