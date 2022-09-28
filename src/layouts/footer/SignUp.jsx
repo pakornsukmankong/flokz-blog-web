@@ -1,7 +1,7 @@
 function SignUp() {
   return (
-    <div className="container p-3">
-      <div className="">
+    <div className="p-2">
+      <div className="text-center">
         <p className="flex justify-center items-center">
           <span className="mr-4">Register for free</span>
           <button

@@ -1,5 +1,7 @@
+import RegisterContainer from '../features/auth/RegisterContainer';
+
 function RegisterPage() {
-  return <div>RegisterPage</div>;
+  return <RegisterContainer />;
 }
 
 export default RegisterPage;
