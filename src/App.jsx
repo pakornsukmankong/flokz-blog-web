@@ -14,15 +14,9 @@ function App() {
       {loading && <Spinner />}
       <Router />;
       <ToastContainer
-        position="bottom-center"
         autoClose={2000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss={false}
-        draggable
-        pauseOnHover
+        theme="colored"
+        position="bottom-center"
       />
     </>
   );

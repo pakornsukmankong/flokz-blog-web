@@ -32,14 +32,14 @@ function AuthContextProvider({ children }) {
     setUser(res.data.user);
   };
 
-  const register = async () => {
-    const res = await authService.register();
+  const register = async (input) => {
+    const res = await authService.register(input);
     addAccessToken(res.data.token);
     setTimeout(() => getMe(), 1);
   };
 
-  const login = async () => {
-    const res = await authService.login();
+  const login = async (input) => {
+    const res = await authService.login(input);
     addAccessToken(res.data.token);
     await getMe();
   };

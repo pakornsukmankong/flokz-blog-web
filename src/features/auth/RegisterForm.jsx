@@ -1,6 +1,15 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { useAuth } from '../../contexts/authContext';
+import { useLoading } from '../../contexts/LoadingContext';
+import { validateRegister } from '../../validation/userValidation';
 
 function RegisterForm() {
+  const { register } = useAuth();
+  const { startLoading, stopLoading } = useLoading();
+  const navigate = useNavigate();
+
   const [input, setInput] = useState({
     username: '',
     email: '',
@@ -9,6 +18,21 @@ function RegisterForm() {
   });
 
   const handleClickSubmit = async (e) => {
+    e.preventDefault();
+    const { error } = validateRegister(input);
+    if (error) {
+      return toast.error(error.message);
+    }
+    try {
+      startLoading();
+      await register(input);
+      toast.success('Register Success');
+      navigate('/profile');
+    } catch (err) {
+      toast.error(err.response.data.message);
+    } finally {
+      stopLoading();
+    }
     e.preventDefault();
   };
 
@@ -32,6 +56,7 @@ function RegisterForm() {
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="username"
             name="username"
+            value={input.username}
             onChange={handleChangeInput}
           />
         </div>
@@ -49,6 +74,7 @@ function RegisterForm() {
             placeholder="name@email.com"
             name="email"
             onChange={handleChangeInput}
+            value={input.email}
           />
         </div>
         <div className="mb-3">
@@ -63,6 +89,7 @@ function RegisterForm() {
             id="password"
             name="password"
             onChange={handleChangeInput}
+            value={input.password}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
@@ -74,10 +101,11 @@ function RegisterForm() {
             Confirm Password
           </label>
           <input
-            type="confirmPassword"
+            type="password"
             id="confirmPassword"
             name="confirmPassword"
             onChange={handleChangeInput}
+            value={input.confirmPassword}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>

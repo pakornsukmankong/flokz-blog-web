@@ -1,5 +1,5 @@
 function Container({ children }) {
-  return <div className="px-[10rem]">{children}</div>;
+  return <div className="px-[13rem]">{children}</div>;
 }
 
 export default Container;
