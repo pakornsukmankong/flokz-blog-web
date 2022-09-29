@@ -1,36 +1,36 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
-import { useAuth } from '../../contexts/authContext';
-import { useLoading } from '../../contexts/LoadingContext';
+import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
+import { useAuth } from '../../contexts/authContext'
+import { useLoading } from '../../contexts/LoadingContext'
 
 function LoginForm() {
-  const { startLoading, stopLoading } = useLoading();
-  const { login } = useAuth();
-  const navigate = useNavigate();
+  const { startLoading, stopLoading } = useLoading()
+  const { login } = useAuth()
+  const navigate = useNavigate()
 
   const [input, setInput] = useState({
     usernameOrEmail: '',
     password: '',
-  });
+  })
 
   const handleClickSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault()
     try {
-      startLoading();
-      await login(input);
-      toast.success('login success');
-      navigate('/');
+      startLoading()
+      await login(input)
+      toast.success('login success')
+      navigate('/')
     } catch (err) {
-      toast.error(err.response.data.message);
+      toast.error(err.response.data.message)
     } finally {
-      stopLoading();
+      stopLoading()
     }
-  };
+  }
 
   const handleChangeInput = (e) => {
-    setInput({ ...input, [e.target.name]: e.target.value });
-  };
+    setInput({ ...input, [e.target.name]: e.target.value })
+  }
   return (
     <form onSubmit={handleClickSubmit}>
       <div className="w-[25rem] ml-[9rem]">
@@ -38,8 +38,7 @@ function LoginForm() {
         <div className="mb-6">
           <label
             htmlFor="username"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
             Username or Email
           </label>
           <input
@@ -56,8 +55,7 @@ function LoginForm() {
         <div className="mb-6">
           <label
             htmlFor="password"
-            className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
             Password
           </label>
           <input
@@ -72,13 +70,12 @@ function LoginForm() {
 
         <button
           type="submit"
-          className="text-white bg-blue-800 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-        >
+          className="text-white bg-blue-800 hover:bg-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
           Login
         </button>
       </div>
     </form>
-  );
+  )
 }
 
-export default LoginForm;
+export default LoginForm

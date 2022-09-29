@@ -1,13 +1,13 @@
-import { Route, Routes, Navigate } from 'react-router-dom';
-import AuthLayout from '../layouts/auth/AuthLayout';
-import LoginPage from '../pages/LoginPage';
-import RegisterPage from '../pages/RegisterPage';
-import HomePage from '../pages/HomePage';
-import ProfilePage from '../pages/ProfilePage';
-import ContainerLayout from '../layouts/container/ContainerLayout';
-import EditBlogPage from '../pages/EditBlogPage';
-import SingleBlogPage from '../pages/SingleBlogPage';
-import CreateBlogPage from '../pages/CreateBlogPage';
+import { Route, Routes, Navigate } from 'react-router-dom'
+import AuthLayout from '../layouts/auth/AuthLayout'
+import LoginPage from '../pages/LoginPage'
+import RegisterPage from '../pages/RegisterPage'
+import HomePage from '../pages/HomePage'
+import ProfilePage from '../pages/ProfilePage'
+import ContainerLayout from '../layouts/container/ContainerLayout'
+import EditBlogPage from '../pages/EditBlogPage'
+import SingleBlogPage from '../pages/SingleBlogPage'
+import CreateBlogPage from '../pages/CreateBlogPage'
 
 function Router() {
   return (
@@ -27,7 +27,7 @@ function Router() {
         </Route>
       </Routes>
     </>
-  );
+  )
 }
 
-export default Router;
+export default Router
