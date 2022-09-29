@@ -1,6 +1,14 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { useAuth } from '../../contexts/authContext';
+import { useLoading } from '../../contexts/LoadingContext';
 
 function LoginForm() {
+  const { startLoading, stopLoading } = useLoading();
+  const { login } = useAuth();
+  const navigate = useNavigate();
+
   const [input, setInput] = useState({
     usernameOrEmail: '',
     password: '',
@@ -8,6 +16,16 @@ function LoginForm() {
 
   const handleClickSubmit = async (e) => {
     e.preventDefault();
+    try {
+      startLoading();
+      await login(input);
+      toast.success('login success');
+      navigate('/');
+    } catch (err) {
+      toast.error(err.response.data.message);
+    } finally {
+      stopLoading();
+    }
   };
 
   const handleChangeInput = (e) => {
@@ -29,6 +47,7 @@ function LoginForm() {
             id="username"
             name="usernameOrEmail"
             onChange={handleChangeInput}
+            value={input.usernameOrEmail}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             placeholder="username or email"
           />
@@ -46,6 +65,7 @@ function LoginForm() {
             id="password"
             name="password"
             onChange={handleChangeInput}
+            value={input.password}
             className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           />
         </div>
