@@ -13,7 +13,7 @@ function Menu() {
           Blog
         </MenuItem>
         <MenuItem
-          to="/create"
+          to={!user ? '/login' : '/create'}
           active={pathname === '/create' ? 'text-blue-800' : ''}>
           Write
         </MenuItem>
