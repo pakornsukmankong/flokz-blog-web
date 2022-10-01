@@ -22,7 +22,7 @@ function LoginForm() {
       toast.success('login success')
       navigate('/')
     } catch (err) {
-      toast.error(err.response.data.message)
+      toast.error(err.response?.data.message)
     } finally {
       stopLoading()
     }
