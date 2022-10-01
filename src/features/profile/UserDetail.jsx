@@ -108,7 +108,7 @@ function UserDetail({
         </div>
         <div className="md:w-full">
           <div className="flex flex-col justify-center items-center">
-            <ProfileImageForm profileImage={profileImage} />
+            <ProfileImageForm profileImage={profileImage} isMe={isMe} />
             <textarea
               id="message"
               rows="4"

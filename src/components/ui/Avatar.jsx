@@ -1,13 +1,13 @@
-import profileImage from '../../assets/img/profile-img.png';
+import profileImage from '../../assets/img/profile-img.png'
 
-function Avatar({ src, wSize }) {
+function Avatar({ src, wSize, hSize }) {
   return (
     <img
       src={`${src || profileImage}`}
-      className={`rounded-full ${wSize} shadow-lg`}
+      className={`rounded-full ${wSize} ${hSize} shadow-lg`}
       alt="Avatar"
     />
-  );
+  )
 }
 
-export default Avatar;
+export default Avatar

@@ -9,7 +9,7 @@ function ProfileIcon() {
   return (
     <div>
       <Link to={`/profile/${id}`}>
-        <Avatar wSize="w-8" src={profileImage} />
+        <Avatar wSize="w-8" hSize="h-8" src={profileImage} />
       </Link>
     </div>
   )
