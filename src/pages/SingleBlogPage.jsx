@@ -1,5 +1,7 @@
+import SingleBlogContainer from '../features/blog/SingleBlogContainer'
+
 function SingleBlogPage() {
-  return <div>SingleBlogPage</div>
+  return <SingleBlogContainer />
 }
 
 export default SingleBlogPage
