@@ -23,7 +23,7 @@ function UserPostContent() {
       </p>
       <Link to={'/profile/:id'}>
         <div className="flex justify-start items-center mb-2">
-          <Avatar wSize={'w-7'} />
+          <Avatar wSize="w-7" hSize="h-7" />
           <p className="text-xs ml-1 font-normal text-gray-900 dark:text-gray-400">
             Your Username
           </p>

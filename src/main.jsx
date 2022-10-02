@@ -8,13 +8,16 @@ import App from './App'
 import AuthContextProvider from './contexts/authContext'
 import './index.css'
 import LoadingContextProvider from './contexts/LoadingContext'
+import BlogContextProvider from './contexts/BlogContext'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   // <React.StrictMode>
   <BrowserRouter>
     <LoadingContextProvider>
       <AuthContextProvider>
-        <App />
+        <BlogContextProvider>
+          <App />
+        </BlogContextProvider>
       </AuthContextProvider>
     </LoadingContextProvider>
   </BrowserRouter>
