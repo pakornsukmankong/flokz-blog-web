@@ -65,7 +65,7 @@ function ProfileContainer() {
         <h1 className="text-4xl text-center text-gray-900 dark:text-white my-3">
           {user.username} Posts
         </h1>
-        <UserPostList />
+        <UserPostList isMe={isMe} />
       </div>
     </>
   )

@@ -1,14 +1,7 @@
+import BlogContainer from '../features/blog/BlogContainer'
+
 function HomePage() {
-  return (
-    <div>
-      HomePage
-      <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ipsum,
-        dignissimos. Aperiam beatae id ex deserunt rerum blanditiis possimus,
-        quisquam itaque sapiente cumque quo adipisci quam consectetur incidunt
-      </p>
-    </div>
-  );
+  return <BlogContainer />
 }
 
-export default HomePage;
+export default HomePage
