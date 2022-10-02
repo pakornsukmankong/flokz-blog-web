@@ -14,6 +14,7 @@ function ProfileContainer() {
   const { id } = useParams()
   const [user, setUser] = useState({})
   const [social, setSocial] = useState({})
+  const [userBlogs, setUserBlogs] = useState([])
 
   const [input, setInput] = useState({})
 
@@ -38,6 +39,7 @@ function ProfileContainer() {
           facebookUrl: user.Social.facebookUrl,
           instagramUrl: user.Social.instagramUrl,
         })
+        setUserBlogs(user.Blogs)
       } catch (err) {
         console.log(err)
         toast.error(err.response?.data.message)
@@ -65,7 +67,7 @@ function ProfileContainer() {
         <h1 className="text-4xl text-center text-gray-900 dark:text-white my-3">
           {user.username} Posts
         </h1>
-        <UserPostList isMe={isMe} />
+        <UserPostList isMe={isMe} user={user} userBlogs={userBlogs} />
       </div>
     </>
   )
