@@ -22,8 +22,13 @@ function BlogContextProvider({ children }) {
     fetchBlog()
   }, [])
 
+  const getBlog = async (id) => {
+    const res = await blogService.getOneBlog(id)
+    return res
+  }
+
   return (
-    <BlogContext.Provider value={{ blogsLoading, blogs }}>
+    <BlogContext.Provider value={{ blogsLoading, blogs, getBlog }}>
       {children}
     </BlogContext.Provider>
   )
