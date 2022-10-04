@@ -1,5 +1,7 @@
+import EditBlogContainer from '../features/blog/EditBlogContainer'
+
 function EditBlogPage() {
-  return <div>EditBlogPage</div>;
+  return <EditBlogContainer />
 }
 
-export default EditBlogPage;
+export default EditBlogPage
