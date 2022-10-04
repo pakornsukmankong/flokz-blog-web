@@ -8,7 +8,7 @@ function UserPost({ blog, isMe, user }) {
       <UserPostHeader blog={blog} />
       <div className="p-4">
         <UserPostContent blog={blog} user={user} />
-        <UserPostFooter isMe={isMe} />
+        <UserPostFooter isMe={isMe} blog={blog} />
       </div>
     </div>
   )

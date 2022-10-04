@@ -23,12 +23,20 @@ function BlogContextProvider({ children }) {
   }, [])
 
   const getBlog = async (id) => {
-    const res = await blogService.getOneBlog(id)
-    return res
+    return await blogService.getOneBlog(id)
+  }
+
+  const createBlog = async (input) => {
+    return await blogService.createBlog(input)
+  }
+
+  const getAllCate = async () => {
+    return await blogService.getAllCategories()
   }
 
   return (
-    <BlogContext.Provider value={{ blogsLoading, blogs, getBlog }}>
+    <BlogContext.Provider
+      value={{ blogsLoading, blogs, getBlog, createBlog, getAllCate }}>
       {children}
     </BlogContext.Provider>
   )

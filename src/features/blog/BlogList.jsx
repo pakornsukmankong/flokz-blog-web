@@ -1,5 +1,5 @@
-import { useBlog } from '../../contexts/BlogContext'
 import Blog from './Blog'
+import { useBlog } from '../../contexts/BlogContext'
 
 function BlogList() {
   const { blogs } = useBlog()
