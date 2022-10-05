@@ -34,9 +34,20 @@ function BlogContextProvider({ children }) {
     return await blogService.getAllCategories()
   }
 
+  const updateBlog = async (input, blogId) => {
+    return await blogService.editBlog(input, blogId)
+  }
+
   return (
     <BlogContext.Provider
-      value={{ blogsLoading, blogs, getBlog, createBlog, getAllCate }}>
+      value={{
+        blogsLoading,
+        blogs,
+        getBlog,
+        createBlog,
+        getAllCate,
+        updateBlog,
+      }}>
       {children}
     </BlogContext.Provider>
   )

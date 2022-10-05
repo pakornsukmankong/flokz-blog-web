@@ -40,7 +40,7 @@ function RegisterForm() {
     setInput({ ...input, [e.target.name]: e.target.value })
   }
   return (
-    <form onSubmit={handleClickSubmit}>
+    <form onSubmit={handleClickSubmit} className="fadeInUpAnima">
       <div className="w-[25rem] ml-[9rem]">
         <h1 className="text-center text-2xl uppercase font-bold">Register</h1>
         <div className="mb-3">

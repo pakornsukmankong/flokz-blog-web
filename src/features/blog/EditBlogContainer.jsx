@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react'
 import ReactQuill from 'react-quill'
 import { useNavigate, useParams } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import { useBlog } from '../../contexts/BlogContext'
+import { useLoading } from '../../contexts/LoadingContext'
 
 function EditBlogContainer() {
-  const { getBlog, getAllCate } = useBlog()
+  const { getBlog, getAllCate, updateBlog } = useBlog()
+  const { startLoading, stopLoading } = useLoading()
   const { id } = useParams()
   const navigate = useNavigate()
 
@@ -15,6 +18,7 @@ function EditBlogContainer() {
     categoryId: '',
   })
   const [content, setContent] = useState('')
+  const [file, setFile] = useState(null)
 
   const handleInputChange = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value })
@@ -23,8 +27,6 @@ function EditBlogContainer() {
   const handleInputContent = (event) => {
     setContent(event)
   }
-
-  const formData = new FormData()
 
   useEffect(() => {
     const fetchBlog = async () => {
@@ -38,6 +40,7 @@ function EditBlogContainer() {
           title: blog.title,
           categoryId: blog.Category.id,
         })
+        setFile(blog.image)
         setContent(blog.content)
       } catch (err) {
         console.log(err)
@@ -45,6 +48,26 @@ function EditBlogContainer() {
     }
     fetchBlog()
   }, [])
+
+  const formData = new FormData()
+  formData.append('title', input.title)
+  formData.append('categoryId', input.categoryId)
+  formData.append('content', content)
+  formData.append('image', file)
+
+  const handleUpdateBlog = async () => {
+    try {
+      startLoading()
+      await updateBlog(formData, id)
+      toast.success('update success')
+      navigate(`/blog/${id}`)
+    } catch (err) {
+      console.log(err)
+      toast.error(err.response?.data.message)
+    } finally {
+      stopLoading()
+    }
+  }
 
   return (
     <>
@@ -93,11 +116,11 @@ function EditBlogContainer() {
           Upload cover image
         </label>
         <input
-          // onChange={(e) => {
-          //   if (e.target.files[0]) {
-          //     setFile(e.target.files[0])
-          //   }
-          // }}
+          onChange={(e) => {
+            if (e.target.files[0]) {
+              setFile(e.target.files[0])
+            }
+          }}
           id="file_input"
           type="file"
           className="w-max text-sm text-slate-500
@@ -126,7 +149,7 @@ function EditBlogContainer() {
           Back
         </button>
         <button
-          // onClick={handleClickPublish}
+          onClick={handleUpdateBlog}
           type="button"
           className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
           Confirm
