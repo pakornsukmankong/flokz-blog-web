@@ -27,8 +27,6 @@ function CreateBlogContainer() {
     try {
       startLoading()
       const res = await createBlog(formData)
-      console.log(res)
-      console.log(res.data.blog.id)
       toast.success('create blog success')
       navigate(`/blog/${res.data.blog.id}`)
     } catch (err) {

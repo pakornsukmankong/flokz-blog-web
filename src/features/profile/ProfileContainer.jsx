@@ -53,9 +53,9 @@ function ProfileContainer() {
   return (
     <>
       <div>
-        <h1 className="text-4xl text-center text-gray-900 dark:text-white my-3">
+        <p className="text-4xl text-center text-gray-900 dark:text-white my-3">
           {user.username} Profile
-        </h1>
+        </p>
         <UserDetail
           me={me}
           user={user}
@@ -64,9 +64,9 @@ function ProfileContainer() {
           input={input}
           handleChangeInput={handleChangeInput}
         />
-        <h1 className="text-4xl text-center text-gray-900 dark:text-white my-3">
+        <p className="text-4xl text-center text-gray-900 dark:text-white my-3">
           {user.username} Posts
-        </h1>
+        </p>
         <UserPostList isMe={isMe} user={user} userBlogs={userBlogs} />
       </div>
     </>

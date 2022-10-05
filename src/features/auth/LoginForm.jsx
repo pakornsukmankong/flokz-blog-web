@@ -34,7 +34,7 @@ function LoginForm() {
   return (
     <form onSubmit={handleClickSubmit} className="fadeInUpAnima">
       <div className="w-[25rem] ml-[9rem]">
-        <h1 className="text-center text-2xl uppercase font-bold mb-5">Login</h1>
+        <p className="text-center text-2xl uppercase font-bold mb-5">Login</p>
         <div className="mb-6">
           <label
             htmlFor="username"

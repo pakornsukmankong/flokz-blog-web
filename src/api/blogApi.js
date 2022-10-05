@@ -10,3 +10,5 @@ export const getAllCategories = () => axios.get('/categories')
 
 export const editBlog = (input, blogId) =>
   axios.patch(`/blogs/${blogId}/edit`, input)
+
+export const deleteBlog = (id) => axios.delete(`/blogs/${id}`)

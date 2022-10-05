@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext, createContext } from 'react'
 import * as blogService from '../api/blogApi'
+import * as likeService from '../api/likeApi'
 
 const BlogContext = createContext()
 
@@ -38,6 +39,14 @@ function BlogContextProvider({ children }) {
     return await blogService.editBlog(input, blogId)
   }
 
+  const deleteBlog = async (id) => {
+    return await blogService.deleteBlog(id)
+  }
+
+  const toggleLike = async (postId) => {
+    return await likeService.toggleLike(postId)
+  }
+
   return (
     <BlogContext.Provider
       value={{
@@ -47,6 +56,8 @@ function BlogContextProvider({ children }) {
         createBlog,
         getAllCate,
         updateBlog,
+        deleteBlog,
+        toggleLike,
       }}>
       {children}
     </BlogContext.Provider>

@@ -42,7 +42,9 @@ function RegisterForm() {
   return (
     <form onSubmit={handleClickSubmit} className="fadeInUpAnima">
       <div className="w-[25rem] ml-[9rem]">
-        <h1 className="text-center text-2xl uppercase font-bold">Register</h1>
+        <parseFloat className="text-center text-2xl uppercase font-bold">
+          Register
+        </parseFloat>
         <div className="mb-3">
           <label
             htmlFor="username"

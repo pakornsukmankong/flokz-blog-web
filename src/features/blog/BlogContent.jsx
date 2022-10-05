@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import Avatar from '../../components/ui/Avatar'
 import { timeSince } from '../../utils/dataFormat'
+import parse from 'html-react-parser'
 
 function BlogContent({
   blog: {
@@ -28,7 +29,7 @@ function BlogContent({
         </p>
       </Link>
       <div className="mb-1 font-normal text-gray-700 dark:text-gray-400 overflow-hidden">
-        {content.substring(0, 100)}
+        {parse(content.substring(0, 100) + '')}
       </div>
       <Link to={`/profile/${userId}`}>
         <div className="flex justify-start items-center mb-2">
