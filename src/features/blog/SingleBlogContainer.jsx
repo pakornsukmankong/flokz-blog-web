@@ -9,10 +9,8 @@ import SingleBlogHeader from './SingleBlogHeader'
 
 function SingleBlogContainer() {
   const { id } = useParams()
-  const { getBlog, toggleLike } = useBlog()
+  const { getBlog } = useBlog()
   const { startLoading, stopLoading } = useLoading()
-
-  const { id: userId } = useAuth().user
 
   const [blog, setBlog] = useState({
     User: '',
@@ -40,20 +38,8 @@ function SingleBlogContainer() {
     fetchOneBlog()
   }, [id])
 
-  const handleLike = async (blogId) => {
-    try {
-      const res = await toggleLike(blogId)
-      const newBlog = { ...blog }
-
-      if (res.data.like) {
-        newBlog.Likes.push(res.data.like)
-        return setBlog(newBlog)
-      }
-      newBlog.Likes = newBlog.Likes.filter((item) => item.userId !== userId)
-      setBlog(newBlog)
-    } catch (err) {
-      console.log(err)
-    }
+  const setNewBlog = (newBlog) => {
+    setBlog(newBlog)
   }
 
   return (
@@ -62,7 +48,7 @@ function SingleBlogContainer() {
         <SingleBlogHeader blog={blog} />
         <SingleBlogContent blog={blog} />
       </div>
-      <SingleBlogFooter blog={blog} handleLike={handleLike} />
+      <SingleBlogFooter blog={blog} setNewBlog={setNewBlog} />
     </>
   )
 }

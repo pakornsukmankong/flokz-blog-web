@@ -1,11 +1,11 @@
 import CommentContent from './CommentContent'
 import CommentHeader from './CommentHeader'
 
-function Comment() {
+function Comment({ comment }) {
   return (
     <div className=" py-4 border-b-2 mx-4 px-1">
-      <CommentHeader />
-      <CommentContent />
+      <CommentHeader comment={comment} />
+      <CommentContent comment={comment} />
     </div>
   )
 }

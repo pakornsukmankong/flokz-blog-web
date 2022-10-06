@@ -1,13 +1,11 @@
 import Comment from './Comment'
 
-function CommentLists() {
+function CommentLists({ blog: { Comments } }) {
   return (
     <>
-      <Comment />
-      <Comment />
-      <Comment />
-      <Comment />
-      <Comment />
+      {Comments.map((item) => (
+        <Comment key={item.id} comment={item} />
+      ))}
     </>
   )
 }

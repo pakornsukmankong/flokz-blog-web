@@ -1,22 +1,39 @@
 import React from 'react'
 import { useState } from 'react'
 import { useAuth } from '../../contexts/authContext'
+import { useBlog } from '../../contexts/BlogContext'
 import CommentContainer from '../comment/CommentContainer'
 
-function SingleBlogFooter({
-  blog: { id: blogId, Likes, Comments },
-  handleLike,
-}) {
+function SingleBlogFooter({ blog, setNewBlog }) {
   const {
-    user: { id },
+    user: { id: userId },
   } = useAuth()
+  const { toggleLike } = useBlog()
+
+  const { id: blogId, Likes, Comments } = blog
 
   const [isCommentOpen, setIsCommentOpen] = useState(false)
 
-  const isUserLiked = Likes.find((item) => item.userId === id)
+  const isUserLiked = Likes.find((item) => item.userId === userId)
 
   const toggleComment = () => {
     setIsCommentOpen((prev) => !prev)
+  }
+
+  const handleLike = async (blogId) => {
+    try {
+      const res = await toggleLike(blogId)
+      const newBlog = { ...blog }
+
+      if (res.data.like) {
+        newBlog.Likes.push(res.data.like)
+        return setNewBlog(newBlog)
+      }
+      newBlog.Likes = newBlog.Likes.filter((item) => item.userId !== userId)
+      setNewBlog(newBlog)
+    } catch (err) {
+      console.log(err)
+    }
   }
 
   return (
@@ -39,7 +56,9 @@ function SingleBlogFooter({
           </p>
         </div>
       </div>
-      {isCommentOpen && <CommentContainer />}
+      {isCommentOpen && (
+        <CommentContainer blog={blog} setNewBlog={setNewBlog} />
+      )}
     </>
   )
 }
