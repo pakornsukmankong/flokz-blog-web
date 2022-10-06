@@ -29,7 +29,7 @@ function SingleBlogHeader({
         src={image}
         alt="title image"
       />
-      <Link to={`/profile${id}`}>
+      <Link to={`/profile/${id}`}>
         <div className="flex justify-start items-center mt-2">
           <Avatar wSize="w-7" hSize="h-7" src={profileImage} />
           <p className="text-xs ml-2 font-normal text-gray-900 dark:text-gray-400">

@@ -5,16 +5,17 @@ import { useBlog } from '../../contexts/BlogContext'
 import CommentContainer from '../comment/CommentContainer'
 
 function SingleBlogFooter({ blog, setNewBlog }) {
-  const {
-    user: { id: userId },
-  } = useAuth()
+  const { user } = useAuth()
   const { toggleLike } = useBlog()
 
   const { id: blogId, Likes, Comments } = blog
 
   const [isCommentOpen, setIsCommentOpen] = useState(false)
 
-  const isUserLiked = Likes.find((item) => item.userId === userId)
+  let isUserLiked = false
+  if (user) {
+    isUserLiked = Likes.find((item) => item.userId === user.id)
+  }
 
   const toggleComment = () => {
     setIsCommentOpen((prev) => !prev)
@@ -29,7 +30,7 @@ function SingleBlogFooter({ blog, setNewBlog }) {
         newBlog.Likes.push(res.data.like)
         return setNewBlog(newBlog)
       }
-      newBlog.Likes = newBlog.Likes.filter((item) => item.userId !== userId)
+      newBlog.Likes = newBlog.Likes.filter((item) => item.userId !== user.id)
       setNewBlog(newBlog)
     } catch (err) {
       console.log(err)
