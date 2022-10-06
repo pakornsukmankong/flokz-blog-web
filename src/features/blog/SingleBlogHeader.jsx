@@ -3,9 +3,13 @@ import Avatar from '../../components/ui/Avatar'
 import { timeSince } from '../../utils/dataFormat'
 
 function SingleBlogHeader({
-  user: { profileImage, username, id },
-  blog: { updatedAt, title, image },
-  category: { categoryName },
+  blog: {
+    User: { profileImage, username, id },
+    updatedAt,
+    title,
+    image,
+    Category: { categoryName },
+  },
 }) {
   return (
     <div className="flex flex-col gap-2 mb-5">
@@ -18,7 +22,7 @@ function SingleBlogHeader({
         {title}
       </h5>
       <p className="mb-1 text-[15px] text-gray-400 dark:text-white">
-        {updatedAt} - {timeSince(updatedAt) + ' ago'}
+        {updatedAt.slice(0, 10)} - {timeSince(updatedAt) + ' ago'}
       </p>
       <img
         className="rounded-t-lg w-[100%] h-[25rem]"
