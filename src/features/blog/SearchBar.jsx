@@ -1,6 +1,9 @@
 import React from 'react'
+import { useBlog } from '../../contexts/BlogContext'
 
 function SearchBar() {
+  const { getSearchInput } = useBlog()
+
   return (
     <>
       <label
@@ -13,6 +16,7 @@ function SearchBar() {
           <i className="fa-solid fa-magnifying-glass text-gray-400"></i>
         </div>
         <input
+          onChange={(e) => getSearchInput(e.target.value)}
           type="text"
           id="default-search"
           className="p-2.5 pl-10 w-[20rem] text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"

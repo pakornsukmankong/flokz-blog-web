@@ -7,13 +7,14 @@ const BlogContext = createContext()
 
 function BlogContextProvider({ children }) {
   const [blogs, setBlogs] = useState([])
+  const [searchInput, setSearchInput] = useState('')
   const [blogsLoading, setBlogLoading] = useState(false)
 
   useEffect(() => {
     const fetchBlog = async () => {
       try {
         setBlogLoading(true)
-        const res = await blogService.getAllBlog()
+        const res = await blogService.getAllBlog(searchInput)
         setBlogs(res.data.blogs)
       } catch (err) {
         console.log(err)
@@ -22,7 +23,7 @@ function BlogContextProvider({ children }) {
       }
     }
     fetchBlog()
-  }, [])
+  }, [searchInput])
 
   const getBlog = async (id) => {
     return await blogService.getOneBlog(id)
@@ -52,6 +53,10 @@ function BlogContextProvider({ children }) {
     return await commentService.createComment(input, blogId)
   }
 
+  const getSearchInput = (input) => {
+    return setSearchInput(input)
+  }
+
   return (
     <BlogContext.Provider
       value={{
@@ -64,6 +69,7 @@ function BlogContextProvider({ children }) {
         deleteBlog,
         toggleLike,
         createComment,
+        getSearchInput,
       }}>
       {children}
     </BlogContext.Provider>

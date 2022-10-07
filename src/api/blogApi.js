@@ -1,6 +1,7 @@
 import axios from '../config/axios'
 
-export const getAllBlog = () => axios.get('/blogs')
+export const getAllBlog = (queryString) =>
+  axios.get(`/blogs` + '?title=' + queryString)
 
 export const createBlog = (input) => axios.post('/blogs', input)
 
