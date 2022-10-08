@@ -9,12 +9,14 @@ function BlogContextProvider({ children }) {
   const [blogs, setBlogs] = useState([])
   const [searchInput, setSearchInput] = useState('')
   const [blogsLoading, setBlogLoading] = useState(false)
+  const [page, setPage] = useState(0)
+  const [limit, setLimit] = useState(8)
 
   useEffect(() => {
     const fetchBlog = async () => {
       try {
         setBlogLoading(true)
-        const res = await blogService.getAllBlog(searchInput)
+        const res = await blogService.getAllBlog(searchInput, page, limit)
         setBlogs(res.data.blogs)
       } catch (err) {
         console.log(err)
@@ -23,7 +25,7 @@ function BlogContextProvider({ children }) {
       }
     }
     fetchBlog()
-  }, [searchInput])
+  }, [searchInput, page, limit])
 
   const getBlog = async (id) => {
     return await blogService.getOneBlog(id)
